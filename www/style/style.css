@@ -1,0 +1,70 @@
+body{
+    background-image: url("aveGreenBg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.img_icon {
+    max-width:100%;
+    max-height:100%;
+    margin: 5px;
+    object-fit: contain;
+}
+
+.assessment-button {
+    border-radius: 12px;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;   
+    margin-left: 10px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.dot {
+    background-color: #909090;
+    float: left;
+    margin: 0px 1px 1px 0px;
+    width: 24px;
+    height: 24px;
+}
+
+.dot.green {
+    background-color: green;
+}
+
+.center {
+    display:flex; 
+    justify-content:center; 
+    align-items:center;
+}
+
+.ring {
+    position: relative;
+    border-radius: 50px;
+    width: 200px;
+    height: 50px;
+    margin: auto;
+    overflow: hidden;
+    text-align: center;
+    border: 3px solid black;
+    z-index: 3;
+}
+
+.fill {
+    position:absolute;
+    bottom:0; left:0;
+    width:100%;
+    background: green;
+    height: 100%;
+    transition: width 600ms;
+    z-index: 2;
+}
