@@ -19,7 +19,6 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 def get_image_size():
 	img = cv2.imread('gestures/1/100.jpg', 0)
 	return img.shape
-
 def get_num_of_classes():
 	return (len(os.listdir('gestures/')) - 1)
 
@@ -38,7 +37,9 @@ def cnn_model():
 	model.add(Dense(128, activation='relu'))
 	model.add(Dropout(0.2))
 
-	model.add(Dense(num_of_classes, activation='softmax'))
+	#model.add(Dense(num_of_classes, activation='softmax'))
+	model.add(Dense(22, activation='softmax'))
+	print(num_of_classes)
 	sgd = optimizers.SGD(lr=1e-3)
 	model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 	filepath="cnn_model_keras2.h5"

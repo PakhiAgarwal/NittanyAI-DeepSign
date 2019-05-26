@@ -106,7 +106,7 @@ def recognize():
 		thresh = cv2.merge((thresh,thresh,thresh))
 		thresh = cv2.cvtColor(thresh, cv2.COLOR_BGR2GRAY)
 		thresh = thresh[y:y+h, x:x+w]
-		contours = cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)[1]
+		contours = cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)[0]
 		if len(contours) > 0:
 			contour = max(contours, key = cv2.contourArea)
 			#print(cv2.contourArea(contour))
@@ -126,7 +126,7 @@ def recognize():
 					text = get_pred_text_from_db(pred_class)
 					print(text)
 		blackboard = np.zeros((480, 640, 3), dtype=np.uint8)
-		blackboard = np.zeros((720, 400, 3), dtype=np.uint8)
+		#blackboard = np.zeros((720, 400, 3), dtype=np.uint8)
 		splitted_text = split_sentence(text, 2)
 		put_splitted_text_in_blackboard(blackboard, splitted_text)
 		#cv2.putText(blackboard, text, (30, 200), cv2.FONT_HERSHEY_TRIPLEX, 1.3, (255, 255, 255))

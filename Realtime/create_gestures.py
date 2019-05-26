@@ -50,8 +50,9 @@ def store_images(g_id):
 	pic_no = 0
 	flag_start_capturing = False
 	frames = 0
-	
+	test = cam.isOpened()
 	while True:
+		test = cam.isOpened()
 		img = cam.read()[1]
 		img = cv2.flip(img, 1)
 		imgHSV = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
@@ -64,9 +65,10 @@ def store_images(g_id):
 		thresh = cv2.merge((thresh,thresh,thresh))
 		thresh = cv2.cvtColor(thresh, cv2.COLOR_BGR2GRAY)
 		thresh = thresh[y:y+h, x:x+w]
-		contours = cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)[1]
+		contours = cv2.findContours(thresh.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)[0]
 
 		if len(contours) > 0:
+			cArea = cv2.contourArea(contours[0])
 			contour = max(contours, key = cv2.contourArea)
 			if cv2.contourArea(contour) > 10000 and frames > 50:
 				x1, y1, w1, h1 = cv2.boundingRect(contour)
