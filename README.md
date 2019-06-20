@@ -1,2 +1,3 @@
-# Deep-Sign
-Auto-Grading Signed Videos using Computer Vision and Deep Learning
+# DeepSign
+
+An ASL Communicating and Translating Tool.
