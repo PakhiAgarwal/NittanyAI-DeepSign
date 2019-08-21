@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DeepSign Sign to Speech Translator</title>
+    <link rel="stylesheet" href="assets/css/mainS.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
+
+    <script src="https://unpkg.com/ml5@0.3.1/dist/ml5.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div id="pageTitle" class="align-center"> <h1>Deep-Sign ASL-Speech Translator (Demo)<h1></div>
+    <div id="main" class="align-center center">
+        <div id="videoPlayDiv" class="align-center center">
+        </div>
+
+        <div id="action-btn">
+            <button id="prepareButton" onclick="javascript:prepareTraining()"> Prepare >>></button>
+            <button id="signButton" onclick="javascript:startSigning()" style="display:none;"> Start Signing</button>
+        </div>
+
+        <h1 id="status">
+            <h2><span id="text"></span></h2>
+            <div id="status-text"><h1>Status: Not Ready</h1></div>
+        </h1>
+
+    </div>
+</div>
+
+<div class="split-right" id="rightPanel" >
+    <div class="centered">
+        <div id="loader"></div>
+        <h1>
+            <span id="answerText"></span>
+            <span id="interimText"></span>
+        </h1>
+        <div class="centered">
+            <div id="training-list">
+                <div id="example-list"></div>
+                <div id="add">
+                    <form id="add-word" autocomplete="off">
+                    </form>
+                </div>
+                <p id="count" style="width: 150px; margin-left: auto; margin-right:auto;">
+                    <button onclick="javascript:startTraining()" >Train</button>
+                </p>
+                <div id="explanationDiv">
+                    (1) This is only a demo version to showcase the sign recognition. The full version will not need training online and will include more ASL vocabulary.<br>
+                    (2) Please stay your hands away from your camera while adding examples for NO SIGN.<br>
+                    (3) Please use your hand to cover the camera while adding examples for STOP.<br>
+                    (4) You can add more than 10 examples for each word.<br>
+                    (5) Sign other words with variations to gain better flexibility. For example, move your gesture far from or close to the camera while signing OK and adding examples.<br>
+                </div>
+            </div>
+
+            <div id="trainingResultsDiv" >
+
+            </div>
+
+            <div id="finishTrainDiv" >
+                <button id="saveButton" onclick="javascript:saveModel()" >Save</button>
+                <button id="closeButton" onclick="javascript:finishTraining()" >Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="js/train.js"></script>
+</body>
+
+</html>

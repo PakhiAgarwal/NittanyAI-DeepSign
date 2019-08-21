@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DeepSign Translator</title>
+    <script src="https://asl-videos.s3.amazonaws.com/vocabulary.js"> </script>
+    <script src="javascript-lemmatizer/bower_components/underscore/underscore.js"> </script>
+    <script src="javascript-lemmatizer/js/lemmatizer.js"> </script>
+    <script src="js/speechRecognition.js"> </script>
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body onload="pageOnLoad()">
+<div id="pageTitle" class="align-center"> <h1>Deep-Sign Speech-ASL Translator<h1></div>
+<div id="main" class="align-center center">
+    <div id="videoPlayDiv" class="align-center center">
+        <div id="videoDiv" class="videoFrame">
+            <video id="videoPlayer">
+                <source src="https://asl-videos.s3.amazonaws.com/all/snake.mp4" type="video/mp4">
+                Sorry, your browser does not support HTML5 video. Please use <a href="https://www.google.com/chrome" target="_blank"> Chrome </a>.
+            </video>
+        </div>
+        <div id = "fallbackWord" class="bold">
+        </div>
+    </div>
+    <div id="startListeningDiv" class="button">
+        <a id="listeningButton" href="javascript: startListening()" style="text-decoration:none"> Start Listening</a>
+    </div>
+</div>
+</body>
+
+
+</html>

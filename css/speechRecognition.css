@@ -1,0 +1,15 @@
+.bold {
+    font-family: 'Baloo Bhaina', "Helvetica Neue", "sans-serif";
+    font-size: 80px;
+    font-weight: bold;
+    line-height: 100%;
+}
+
+#pageTitle{
+    margin-top: 150px !important;
+}
+
+#videoPlayDiv{
+    width: 640px;
+    height: 480px;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DeepSign Sign to Speech Translator</title>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/mainS.css">
+    <script src="dist/build.js"></script> 
+    
+</head>
+<body>
+
+<div id="pageTitle" class="align-center"> <h1>Deep-Sign ASL-Speech Translator<h1></div>
+<div id="main" class="align-center center">
+    <div id="videoPlayDiv" class="align-center center">
+        <div id="videoDiv" class="videoFrame">
+            <video id="video" class="videoRecorder" src='' muted autoplay playsinline></video>
+        </div>
+    </div>
+
+    <div id="action-btn"></div>
+
+    <h1 id="status">
+        <h2><span id="text"></span></h2>
+        <p id="status-text">Status: Not Ready</p>
+
+    </div>
+
+
+
+</div>
+
+  <div class="split-right">
+    <div class="centered">
+      <div id="loader"></div>
+      <h1>
+        <span id="answerText"></span>
+        <span id="interimText"></span>
+      </h1>
+        <div class="centered">
+            <div id="training-list">
+                <div id="example-list"></div>
+                <div id="add">
+                    <form id="add-word" autocomplete="off">
+                    </form>
+                </div>
+                <p id="count">Training: 2 words</p>
+            </div>
+
+        </div>
+    </div>
+  </div>
+</body>
+</html>
