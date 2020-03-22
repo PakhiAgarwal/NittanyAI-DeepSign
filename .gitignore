@@ -21,3 +21,7 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
+ASL_Recongnition/venv/*
+ASL_Recongnition/env/*
+ASL_Recongnition/node_modules/*
+ASL_Recongnition/node_modules/

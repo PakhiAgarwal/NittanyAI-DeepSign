@@ -2,12 +2,12 @@ import tensorflow as tf
 import numpy as np
 import pickle, os, cv2
 
-tf.logging.set_verbosity(tf.logging.INFO)
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.INFO)
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 def get_image_size():
-	img = cv2.imread('gestures/0/100.jpg', 0)
-	return img.shape
+    img = cv2.imread('gestures/0/100.jpg', 0)
+    return img.shape
 
 def get_num_of_classes():
 	return len(os.listdir('gestures/'))
