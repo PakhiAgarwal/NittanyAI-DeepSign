@@ -3,6 +3,6 @@ numpy
 scikit-learn
 sklearn
 tensorflow
-keras
+keras==2.2.5
 opencv-python
 pyttsx3

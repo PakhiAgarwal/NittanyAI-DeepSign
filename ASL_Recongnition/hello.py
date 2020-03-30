@@ -1,3 +1,5 @@
+import sys
+sys.path.append("./Histogram Model")
 from flask import Flask, render_template, Response, jsonify, request, flash, abort
 from flask_socketio import SocketIO, join_room, emit
 import cv2
@@ -5,6 +7,8 @@ import base64
 import numpy as np
 from werkzeug.utils import secure_filename
 import os
+from recognize_gesture import recognize
+from keras.models import load_model
 
 app = Flask(__name__, template_folder='.')
 app.config['imgdir'] = 'abcd/upload'
@@ -36,6 +40,13 @@ def upload():
     filepath = os.path.join(app.config['imgdir'], filename) + '.webm'
     print(filepath)
     file.save(filepath)
+    model_path = os.path.join(app.config['imgdir'], 'cnn_model_keras2.h5')
+    print(model_path)
+    model = load_model('cnn_model_keras2.h5')
+
+    return jsonify({"a": recognize(filepath)})
+
+    """
     cap = cv2.VideoCapture(filepath)
     if (cap.isOpened()== False):
         print('shobhit')
@@ -55,6 +66,7 @@ def upload():
             break
     cap.release()
     return jsonify({"a":2});
+    """
 
 #not used currently
 def gen(camera):
@@ -72,5 +84,5 @@ def on_create(data):
 
 
 if __name__ == '__main__':
-    #app.run()
-    socketio.run(app, debug=True)
+    app.run(threaded=False)
+    #socketio.run(app, debug=True)

@@ -758,14 +758,21 @@
 
 <button class="button" id="btn-start-recording">Start Recording</button>
 <style>
-    html, body {
-        margin: 0!important;
-        padding: 0!important;
-    }
+  html, body { width:100%; height:100%; margin:0; padding:0; }
+  .content {
+      height: 300px;
+      width: 300px;
+      background: rgba(255, 255, 255, 0);
+      border: 5px solid red;
+      color:white;
+      margin-top: 100px;
+      margin-left: 300px;
+  }
+  video {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+  }
 </style>
-
-<title>Video Recording | RecordRTC</title>
-<h1>Simple Video Recording using RecordRTC</h1>
 
 <br>
 <!--
@@ -773,46 +780,54 @@
 <button id="btn-stop-recording" disabled>Stop Recording</button>
 -->
 <hr>
-<video controls autoplay playsinline></video>
+<div style="position: fixed; width: 100%; height: 100%; z-index: -1;">
+  <video autoplay playsinline width="640" height="480" ></video>
+</div>
+<div class='content'></div>
 
 <script src="/RecordRTC.js"></script>
 <script>
 var video = document.querySelector('video');
 
 function captureCamera(callback) {
-    navigator.mediaDevices.getUserMedia({ audio: true, video: true }).then(function(camera) {
+    navigator.mediaDevices.getUserMedia({ audio: false, video: true })
+    .then(function(camera) {
         callback(camera);
-    }).catch(function(error) {
+    });
+    /*.catch(function(error) {
         alert('Unable to capture your camera. Please check console logs.');
         console.error(error);
     });
+    */
 }
 
 function stopRecordingCallback() {
-    video.src = video.srcObject = null;
-    video.muted = false;
-    video.volume = 1;
-    let blob = recorder.getBlob();
-    console.log(blob);
-    //invokeSaveAsDialog(blob);
-    video.src = URL.createObjectURL(blob);
-    
-    recorder.camera.stop();
-    recorder.destroy();
-    recorder = null;
+  
+  //video.volume = 1;
+  let blob = recorder.getBlob();
+  console.log(blob);
+  //invokeSaveAsDialog(blob);
+  
+  
+  recorder.camera.stop();
+  recorder.destroy();
+  recorder = null;
 
-   var fd = new FormData();
-      fd.append('fname', 'test.wav');
-      fd.append('data', blob);
-      $.ajax({
-	     type: 'POST',
-	     url: '/upload',
-	     data: fd,
-	     processData: false,
-	     contentType: false
-      }).done(function(data) {
-		console.log(data);
-      });
+  var fd = new FormData();
+  fd.append('fname', 'test.wav');
+  fd.append('data', blob);
+  $.ajax({
+    type: 'POST',
+    url: '/upload',
+    data: fd,
+    processData: false,
+    contentType: false
+  }).done(function(data) {
+    console.log(data);
+    video.src = video.srcObject = null;
+    video.muted = true;
+    video.src = URL.createObjectURL(blob);
+  });
 }
 
 var recorder; // globally accessible
