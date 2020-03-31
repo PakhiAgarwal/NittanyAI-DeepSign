@@ -95,13 +95,13 @@ def recognize(f):
 	os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 	tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 	classifier = tf.estimator.Estimator(model_dir="tmp/cnn_model2", model_fn=cnn_model_fn)
-	prediction = None
 	model = load_model('cnn_model_keras2.h5')
 	global image_x, image_y
 	image_x, image_y = get_image_size()
 
 	keras_predict(model, np.zeros((50, 50), dtype=np.uint8))
 	global prediction
+	prediction = None
 	cam = cv2.VideoCapture(0) if f == '*' else cv2.VideoCapture(f)
 	#cam = cv2.VideoCapture(1)
 	#cam = cv2.VideoCapture(f)
@@ -166,8 +166,8 @@ def recognize(f):
 		cv2.rectangle(img, (x,y), (x+w, y+h), (0,255,0), 2)
 
 		res = np.hstack((img, blackboard))
-		cv2.imshow("Recognizing gesture", res)
-		cv2.imshow("thresh", thresh)
+		#cv2.imshow("Recognizing gesture", res)
+		#cv2.imshow("thresh", thresh)
 		out.write(thresh)
 		print('aha')
 		print(thresh.shape)
@@ -179,4 +179,4 @@ def recognize(f):
 	return '' if not ress else max(ress.items(), key=operator.itemgetter(1))[0]
 
 #keras_predict(model, np.zeros((50, 50), dtype=np.uint8))
-print(recognize('*'))
+#print(recognize('*'))

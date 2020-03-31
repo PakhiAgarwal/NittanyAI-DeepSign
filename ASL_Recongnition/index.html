@@ -2,7 +2,7 @@
 <HEAD> 
 <TITLE> Picture Naming- Evaluation </TITLE>
 <script src="static/index.js"></script>
-<script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+<script src="static/RecordRTC.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <link type="text/css" href="static/style.css" rel="stylesheet">
@@ -785,7 +785,7 @@
 </div>
 <div class='content'></div>
 
-<script src="/RecordRTC.js"></script>
+<!--<script src="/RecordRTC.js"></script>-->
 <script>
 var video = document.querySelector('video');
 
@@ -855,11 +855,12 @@ document.getElementById('btn-start-recording').onclick = function() {
    }, 5000);
 
 };
-
+/*
 document.getElementById('btn-stop-recording').onclick = function() {
     this.disabled = true;
     recorder.stopRecording(stopRecordingCallback);
 };
+*/
 </script>
 
 <footer style="margin-top: 20px;"><small id="send-message"></small></footer>

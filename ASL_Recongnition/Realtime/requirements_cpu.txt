@@ -6,3 +6,6 @@ tensorflow
 keras==2.2.5
 opencv-python
 pyttsx3
+flask
+flask_socketio
+opencv-python
