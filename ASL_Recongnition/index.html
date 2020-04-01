@@ -784,6 +784,7 @@
   <video autoplay playsinline width="640" height="480" ></video>
 </div>
 <div class='content'></div>
+<p id="response" style="margin-top: 150px;"></p>
 
 <!--<script src="/RecordRTC.js"></script>-->
 <script>
@@ -824,6 +825,9 @@ function stopRecordingCallback() {
     contentType: false
   }).done(function(data) {
     console.log(data);
+    //document.getElementById('response');
+    document.getElementById('response').innerHTML = 'Response: '+ (data.a || "No Action Detected");
+	document.getElementById('btn-start-recording').disabled=false;
     video.src = video.srcObject = null;
     video.muted = true;
     video.src = URL.createObjectURL(blob);
@@ -833,6 +837,8 @@ function stopRecordingCallback() {
 var recorder; // globally accessible
 
 document.getElementById('btn-start-recording').onclick = function() {
+
+    document.getElementById('response').innerHTML = 'Response: ';
     this.disabled = true;
     captureCamera(function(camera) {
         video.muted = true;
@@ -848,7 +854,7 @@ document.getElementById('btn-start-recording').onclick = function() {
         // release camera on stopRecording
         recorder.camera = camera;
 
-        document.getElementById('btn-stop-recording').disabled = false;
+        //document.getElementById('btn-stop-recording').disabled = false;
     });
    setTimeout(function(){
       recorder.stopRecording(stopRecordingCallback);
