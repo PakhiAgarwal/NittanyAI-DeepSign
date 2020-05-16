@@ -5,27 +5,38 @@ import base64
 import numpy as np
 from werkzeug.utils import secure_filename
 import os
+from base64 import b64encode
 
+#ffmpeg -i 'output.avi' -ac 2 -b:v 2000k -c:a aac -c:v libx264 -b:a 160k -vprofile high -bf 0 -strict experimental -f mp4 'output.mp4'
 def g():
-    filepath='abcd/upload/blob.webm'
-    cap = cv2.VideoCapture(filepath)
-    if (cap.isOpened()== False):
-        print('shobhit')
-	raise 'bla'
-    while(cap.isOpened()):
-        # Capture frame-by-frame
-        ret, frame = cap.read()
-        if ret == True:
-            # Display the resulting frame
-            cv2.imshow('Frame',frame)
-            # Press Q on keyboard to  exit
-            if cv2.waitKey(25) & 0xFF == ord('q'):
-                break
-        # Break the loop
-        else:
-            break
-    cap.release()
+    with open('output.mp4', mode='rb') as o:
+        x=o.read()
+    r=b64encode(x)
+    w = jsonify({"b": r})
+
+
+def gg():
+    #filepath='abcd/upload/blob.webm'
+    #cap = cv2.VideoCapture(filepath)
+	out = cv2.VideoWriter('output.avi', cv2.VideoWriter_fourcc(*'DIVX'), 15, (640, 480))
+	cap = cv2.VideoCapture(0)
+	while (cap.isOpened()):
+		# Capture frame-by-frame
+		ret, frame = cap.read()
+		print (frame.shape)
+		if ret == True:
+			# Display the resulting frame
+			cv2.imshow('Frame',frame)
+			out.write(frame)
+			# Press Q on keyboard to  exit
+			if cv2.waitKey(25) & 0xFF == ord('q'):
+				break
+		# Break the loop
+		else:
+			break
+	cap.release()
+	out.release()
 
 
 if __name__ == '__main__':
-    g()
+	g()

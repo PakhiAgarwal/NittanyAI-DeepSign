@@ -773,22 +773,23 @@
     transform: scaleX(-1);
   }
 </style>
-
+<video autoplay playsinline width="300" height="300" id="video1"></video>
 <br>
+
 <!--
 <button id="btn-start-recording">Start Recording</button>
 <button id="btn-stop-recording" disabled>Stop Recording</button>
 -->
 <hr>
 <div style="position: fixed; width: 100%; height: 100%; z-index: -1;">
-  <video autoplay playsinline width="640" height="480" ></video>
+  <video autoplay playsinline width="640" height="480" id="video2"></video>
 </div>
 <div class='content'></div>
 <p id="response" style="margin-top: 150px;"></p>
 
 <!--<script src="/RecordRTC.js"></script>-->
 <script>
-var video = document.querySelector('video');
+var video = document.getElementById("video2");
 
 function captureCamera(callback) {
     navigator.mediaDevices.getUserMedia({ audio: false, video: true })
@@ -831,6 +832,12 @@ function stopRecordingCallback() {
     video.src = video.srcObject = null;
     video.muted = true;
     video.src = URL.createObjectURL(blob);
+
+
+
+    var v = document.getElementById("video1");
+    v.src="static/output.mp4";
+    v.muted=true;
   });
 }
 

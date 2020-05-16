@@ -91,7 +91,7 @@ def get_hand_hist():
 	return hist
 
 def recognize(f):
-	out = cv2.VideoWriter('output.avi', -1, 20.0, (300,300))
+	out = cv2.VideoWriter('static/output.avi', cv2.VideoWriter_fourcc(*'DIVX'), 15, (300,300), 0)
 	os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 	tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 	classifier = tf.estimator.Estimator(model_dir="tmp/cnn_model2", model_fn=cnn_model_fn)
@@ -174,6 +174,7 @@ def recognize(f):
 		if cv2.waitKey(1) == ord('q'):
 			break
 	cam.release()
+	out.release()
 	#out.release()
 	cv2.destroyAllWindows()
 	return '' if not ress else max(ress.items(), key=operator.itemgetter(1))[0]
