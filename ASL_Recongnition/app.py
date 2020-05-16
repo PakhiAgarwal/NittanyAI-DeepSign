@@ -57,6 +57,8 @@ def upload():
     #    x=o.read()
     #return Response(x, 206, mimetype='video/mp4', content_type='video/mp4', direct_passthrough=True)
     m = recognize(filepath)
+
+    subprocess.Popen("[ -e static/output.mp4 ] && rm static/output.mp4", shell=True,stdout=subprocess.PIPE).wait()
     command = "ffmpeg -i 'static/output.avi' -ac 2 -b:v 2000k -c:a aac -c:v libx264 -b:a 160k -vprofile high -bf 0 -strict experimental -f mp4 'static/output.mp4'"
     process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
     process.wait()
