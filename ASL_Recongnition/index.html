@@ -8,7 +8,7 @@
 <link type="text/css" href="static/style.css" rel="stylesheet">
 
 </HEAD>
-<BODY>
+<BODY onload="init()">
 <H1><Center> Picture Naming- Autograding tool </Center></H1>
 
 <!-- Slideshow container -->
@@ -797,13 +797,13 @@
 <button id="btn-start-recording">Start Recording</button>
 <button id="btn-stop-recording" disabled>Stop Recording</button>
 -->
-<hr>
+
 <div style="position: relative; width: 100%; height: 100%; z-index: -1;">
     <video autoplay="" playsinline="" width="640" height="480" id="video2" style="border: 5px solid black;margin-left: 700px;margin-top: -400;"></video>
 </div>
 
 <div class="content" style="z-index: 1000;margin-top: -900px;margin-left: 1000px;"></div>
-<p id="response" style="margin-top: 150px;font-size: 25px;margin-left: 450px;"></p>
+<p id="response" style="margin-top: 10px;font-size: 25px;margin-left: 450px;"></p>
 <!--<script src="/RecordRTC.js"></script>-->
 <script>
 var video = document.getElementById("video2");
